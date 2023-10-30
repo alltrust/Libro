@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState, useRef } from "react";
 import * as esbuild from "esbuild-wasm";
+import { unpkgPathPlugin } from "./plugins/unpkg-path-plugin";
 
 function App() {
   const [input, setInput] = useState("");
@@ -28,12 +29,24 @@ function App() {
     }
 
     //transpile the jsx
-    const result = await ref.current.transform(input, {
-      loader: "jsx",
-      target: "es2015",
+
+    //string of production
+    //and global is for safe keeping, replaces instances of these variables with the value
+    // that you set
+    const env = ["process", "env", "NODE_ENV"].join(".")
+    const result = await ref.current.build({
+      entryPoints: ["index.js"],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin()],
+      define: {
+        [env]: '"production"',
+        global: "window",
+      },
     });
 
-    setCode(result.code);
+    console.log(result);
+    setCode(result.outputFiles[0].text);
   };
 
   return (
