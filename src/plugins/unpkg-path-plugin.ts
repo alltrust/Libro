@@ -32,14 +32,11 @@ export const unpkgPathPlugin = () => {
       build.onResolve({ filter: /.*/ }, async (args: any) => {
         console.log('onResolve', args)
 
-
         return {
           namespace: 'a',
           path: `https://unpkg.com/${args.path}`
         }
       });
-
-      
     },
   };
 };
