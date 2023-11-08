@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply mx-8;
+  }
+  h1 {
+    @apply mb-2 text-3xl font-bold;
+  }
+  .btn {
+    @apply px-4 py-2 rounded transition duration-300;
+  }
+  .btn-primary {
+    @apply bg-slate-500 enabled:hover:bg-slate-800;
+  }
+  .btn-secondary {
+    @apply bg-orange-200 enabled:hover:bg-orange-500;
+  }
+  .btn-tertiary {
+    @apply bg-teal-400 enabled:hover:bg-teal-700;
+  }
+}
