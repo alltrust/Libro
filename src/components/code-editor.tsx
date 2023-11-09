@@ -5,7 +5,6 @@ import MonacoEditor, { OnMount } from '@monaco-editor/react';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import Button from './ui/button/Button';
 
-
 interface CodeEditorProps {
   initialValue: string;
   onChange: (value: string) => void;
@@ -21,24 +20,24 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
     });
 
     editor.updateOptions({ tabSize: 2 });
-
   };
 
   const onFormatClick = () => {
     const unformattaedValue = editorRef.current?.getModel()?.getValue();
 
     if (unformattaedValue) {
-      const formmattedValue = prettier.format(unformattaedValue, {
-        parser: 'babel',
-        plugins: [parser],
-        useTabs: false,
-        semi: true,
-        singleQuote: true,
-      }).replace(/\n$/, "");
+      const formmattedValue = prettier
+        .format(unformattaedValue, {
+          parser: 'babel',
+          plugins: [parser],
+          useTabs: false,
+          semi: true,
+          singleQuote: true,
+        })
+        .replace(/\n$/, '');
 
       editorRef.current?.setValue(formmattedValue);
     }
-
   };
 
   return (

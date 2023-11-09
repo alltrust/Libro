@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as esbuild from "esbuild-wasm";
-import axios from "axios";
-import localforage from "localforage";
+import * as esbuild from 'esbuild-wasm';
+import axios from 'axios';
+import localforage from 'localforage';
 
 const fileCache = localforage.createInstance({
-  name: "filecache",
+  name: 'filecache',
 });
 
 //remember that the inputCode is the content of the index.js file
 export const fetchPlugin = (inputCode: string) => {
   return {
-    name: "fetch-plugin",
+    name: 'fetch-plugin',
     setup(build: esbuild.PluginBuild) {
       build.onLoad({ filter: /^index\.js/ }, () => {
         return {
-          loader: "jsx",
+          loader: 'jsx',
           contents: inputCode,
         };
       });
@@ -22,7 +22,7 @@ export const fetchPlugin = (inputCode: string) => {
       //check if ther are any filescached that match
       build.onLoad({ filter: /.*/ }, async (args: any) => {
         const cachedResult = await fileCache.getItem<esbuild.OnLoadResult>(
-          args.path
+          args.path,
         );
 
         if (cachedResult) {
@@ -32,7 +32,7 @@ export const fetchPlugin = (inputCode: string) => {
       build.onLoad({ filter: /.css$/ }, async (args: any) => {
         const { data, request } = await axios.get(args.path);
         const escaped = data
-          .replace(/\n/g, "")
+          .replace(/\n/g, '')
           .replace(/"/g, '\\"')
           .replace(/'/g, "\\'");
 
@@ -42,9 +42,9 @@ export const fetchPlugin = (inputCode: string) => {
                     document.head.appendChild(style)
                     `;
         const result: esbuild.OnLoadResult = {
-          loader: "jsx",
+          loader: 'jsx',
           contents: contents,
-          resolveDir: new URL("./", request.responseURL).pathname,
+          resolveDir: new URL('./', request.responseURL).pathname,
         };
 
         await fileCache.setItem(args.path, result);
@@ -54,9 +54,9 @@ export const fetchPlugin = (inputCode: string) => {
         const { data, request } = await axios.get(args.path);
 
         const result: esbuild.OnLoadResult = {
-          loader: "jsx",
+          loader: 'jsx',
           contents: data,
-          resolveDir: new URL("./", request.responseURL).pathname,
+          resolveDir: new URL('./', request.responseURL).pathname,
         };
 
         await fileCache.setItem(args.path, result);

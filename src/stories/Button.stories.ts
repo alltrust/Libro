@@ -3,13 +3,13 @@
 //   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 // // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 
-import type { Meta, StoryObj } from "@storybook/react";
-import Button from "../components/ui/button/Button";
+import type { Meta, StoryObj } from '@storybook/react';
+import Button from '../components/ui/button/Button';
 
 const meta: Meta<typeof Button> = {
-  title: "Buttons",
+  title: 'Buttons',
   component: Button,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 
 export default meta;
@@ -18,22 +18,22 @@ type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = {
   args: {
-    status: "primary",
-    label: "Primary",
+    status: 'primary',
+    label: 'Primary',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    status: "secondary",
-    label: "Secondary",
+    status: 'secondary',
+    label: 'Secondary',
   },
 };
 
 export const Tertiary: Story = {
   args: {
-    status: "tertiary",
-    label: "Tertiary",
+    status: 'tertiary',
+    label: 'Tertiary',
   },
 };
 
