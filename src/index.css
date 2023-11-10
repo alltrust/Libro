@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply mx-8;
+    @apply mx-8 bg-slate-500;
   }
   h1 {
     @apply mb-2 text-3xl font-bold;

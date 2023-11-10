@@ -1,0 +1,18 @@
+.react-resizable-handle {
+    @apply block bg-[#37414b] bg-no-repeat bg-center;
+  }
+  
+  .react-resizable-handle-s {
+    @apply h-[10px] w-full cursor-[row-resize] 
+    bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=')];
+  }
+  
+  .react-resizable-handle-e {
+    @apply w-[10px] min-w-[10px] h-full cursor-[col-resize] 
+    bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==')];
+  }
+
+  .react-draggable-transparent-selection .iframe-wrapper::after{
+    @apply absolute content-[''] top-0 right-0 left-0 bottom-0 opacity-0
+  }
+  

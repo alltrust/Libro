@@ -3,9 +3,9 @@ import prettier from 'prettier';
 import parser from 'prettier/parser-babel';
 import MonacoEditor, { OnMount } from '@monaco-editor/react';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import Button from './ui/button/Button';
+import Button from './ui/Button';
 
-interface CodeEditorProps {
+interface CodeEditorProps { 
   initialValue: string;
   onChange: (value: string) => void;
 }
@@ -41,7 +41,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
   };
 
   return (
-    <div className="relative h-full group">
+    <div className="relative h-full group w-[calc(100%-10px)]">
       <Button
         onClick={onFormatClick}
         label="Format"
@@ -53,7 +53,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
         theme="vs-dark"
         defaultLanguage="javascript"
         onMount={handleEditOnMount}
-        className="h-80"
+        className="h-full"
         options={{
           wordWrap: 'on',
           minimap: { enabled: false },

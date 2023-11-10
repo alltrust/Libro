@@ -4,7 +4,7 @@
 // // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 
 import type { Meta, StoryObj } from '@storybook/react';
-import Button from '../components/ui/button/Button';
+import Button from '../components/ui/Button';
 
 const meta: Meta<typeof Button> = {
   title: 'Buttons',

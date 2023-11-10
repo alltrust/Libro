@@ -34,12 +34,17 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   }, [code]);
 
   return (
-    <iframe
-      ref={iFrameRef}
-      srcDoc={html}
-      title="preview"
-      sandbox="allow-scripts"
-    />
+    <div
+      className="iframe-wrapper relative h-full grow"
+    >
+      <iframe
+        className="bg-white h-full w-full"
+        ref={iFrameRef}
+        srcDoc={html}
+        title="preview"
+        sandbox="allow-scripts"
+      />
+    </div>
   );
 };
 
