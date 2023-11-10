@@ -29,14 +29,16 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
   const iFrameRef = useRef<any>();
 
   useEffect(() => {
+
     iFrameRef.current.srcdoc = html;
-    iFrameRef.current.contentWindow.postMessage(code, '*');
+    setTimeout(() => {
+      iFrameRef.current.contentWindow.postMessage(code, '*');
+    }, 50);
+
   }, [code]);
 
   return (
-    <div
-      className="iframe-wrapper relative h-full grow"
-    >
+    <div className="iframe-wrapper relative h-full grow">
       <iframe
         className="bg-white h-full w-full"
         ref={iFrameRef}
