@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 
 interface PreviewProps {
   code: string;
+  bundlingStatus:string;
 }
 
 const html = `
@@ -10,13 +11,20 @@ const html = `
     <body>
       <div id=root></div>
       <script>
+        const handleError = (err)=>{
+          const root = document.querySelector('#root');
+          root.innerHTML = '<div style="color:red;"><h4>Runtime Error</h4>' + err + '</div>';
+          throw err;
+        };
+        window.addEventListener('error', (event)=>{
+          event.preventDefault();
+          handleError(event.error);
+        });
         window.addEventListener('message', (event)=>{
           try{
             eval(event.data)
           } catch (err){
-            const root = document.querySelector('#root');
-            root.innerHTML = '<div style="color:red;"><h4>Runtime Error</h4>' + err + '</div>';
-            throw err;
+            handleError(err);
           }
         }, false)
       </script>
@@ -25,16 +33,15 @@ const html = `
 
 `;
 
-const Preview: React.FC<PreviewProps> = ({ code }) => {
+
+const Preview: React.FC<PreviewProps> = ({ code, bundlingStatus }) => {
   const iFrameRef = useRef<any>();
 
   useEffect(() => {
-
     iFrameRef.current.srcdoc = html;
     setTimeout(() => {
       iFrameRef.current.contentWindow.postMessage(code, '*');
     }, 50);
-
   }, [code]);
 
   return (
@@ -46,6 +53,7 @@ const Preview: React.FC<PreviewProps> = ({ code }) => {
         title="preview"
         sandbox="allow-scripts"
       />
+      {bundlingStatus && <div className=' absolute bg-white text-red-500 top-0 right-0 left-0 bottom-0 m-4'>{bundlingStatus}</div>}
     </div>
   );
 };

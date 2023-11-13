@@ -21,4 +21,13 @@
   .btn-tertiary {
     @apply bg-teal-400 enabled:hover:bg-teal-700;
   }
+  .wmde-markdown-color{
+    @apply p-2 border-double border-white;
+  }
+  .w-md-editor .title {
+    line-height: unset !important;
+    font-size: unset !important;
+    font-weight: unset !important;
+  }
+
 }
