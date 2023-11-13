@@ -4,7 +4,7 @@ import MDEditor from '@uiw/react-md-editor';
 const TextEditor: React.FC = () => {
   const medEditorRef = useRef<HTMLDivElement | null>(null);
   const [text, setText] = useState('**Hello world!!!**');
-  const [editing, setEditing] = useState(true);
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     const listener = (event: MouseEvent) => {
