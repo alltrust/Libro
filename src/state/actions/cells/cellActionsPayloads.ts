@@ -1,6 +1,6 @@
 import { CellTypes } from "./cellTypes";
 
-export type CellDirection = "up" | "down";
+type CellDirection = "up" | "down";
 
 export interface MoveCellPayload {
     id: string;
@@ -12,7 +12,7 @@ export interface DeleteCellPayload {
 }
 
 export interface InsertCellBeforePayload {
-    id: string;
+    id: string | null;
     type: CellTypes;
 }
 

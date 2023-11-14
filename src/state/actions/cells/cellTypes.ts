@@ -14,10 +14,3 @@ export interface CellsState {
         [key: string]: Cell
     };
 }
-
-export const initialState: CellsState = {
-    loading: false,
-    error: null,
-    order: [],
-    data: {},
-}
