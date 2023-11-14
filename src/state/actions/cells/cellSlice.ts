@@ -11,11 +11,11 @@ const initialState: CellsState = {
     data: {},
 }
 
-
 const cellSlice = createSlice({
     name: 'cells',
     initialState,
     reducers: {
+
         updateCell: (state, action: PayloadAction<UpdateCellPayload>) => {
             console.log(action);
             const { id, content } = action.payload;
@@ -23,6 +23,7 @@ const cellSlice = createSlice({
 
             return state;
         },
+
         deleteCell: (state, action: PayloadAction<DeleteCellPayload>) => {
             const { id } = action.payload;
             delete state.data[id];
@@ -31,6 +32,7 @@ const cellSlice = createSlice({
 
             return state;
         },
+
         moveCell: (state, action: PayloadAction<MoveCellPayload>) => {
             const { id, direction } = action.payload;
 
@@ -45,6 +47,7 @@ const cellSlice = createSlice({
 
             return state;
         },
+
         insertCellBefore: (state, action: PayloadAction<InsertCellBeforePayload>) => {
             const { id, type } = action.payload;
 
@@ -63,11 +66,11 @@ const cellSlice = createSlice({
                 state.order.splice(cellIdx, 0, cell.id);
             }
             return state;
-        }
+        },
     },
 });
 
-export const { updateCell } = cellSlice.actions;
+export const { updateCell, moveCell, deleteCell, insertCellBefore } = cellSlice.actions;
 export default cellSlice.reducer;
 
 const randomId = () => {

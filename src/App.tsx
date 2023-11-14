@@ -1,13 +1,12 @@
 // import CodeCell from "./components/CodeCell";
-import TextEditor from "./components/TextEditor";
+import CellList from './components/CellList';
 
-const App =()=>{
-  return(
+const App = () => {
+  return (
     <>
-     {/* <CodeCell/> */}
-     <TextEditor/>
+      <CellList />
     </>
-   
   );
 };
+
 export default App;
