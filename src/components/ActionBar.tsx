@@ -9,7 +9,7 @@ const ActionBar: React.FC<ActionBarProps> = ({ cellId }) => {
   const { deleteCell, moveCell } = useDispatchFn();
 
   return (
-    <div className="bg-slate-950 w-full flex flex-row-reverse">
+    <div className="bg-slate-950 w-full flex flex-row-reverse p-1">
       <Button
         label="Delete"
         status="secondary"

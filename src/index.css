@@ -22,6 +22,10 @@
     @apply bg-teal-400 enabled:hover:bg-teal-700;
   }
 
+  .add-cell-dividers{
+    @apply border-2 h-0 border-slate-400 w-full m-2 rounded-md
+  }
+
   .wmde-markdown-color {
     @apply p-2 border-double border-white;
   }
