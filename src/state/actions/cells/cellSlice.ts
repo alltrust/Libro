@@ -49,7 +49,7 @@ const cellSlice = createSlice({
             return state;
         },
 
-        insertCellBefore: (state, action: PayloadAction<InsertCellBeforePayload>) => {
+        insertCellAfter: (state, action: PayloadAction<InsertCellBeforePayload>) => {
             const { id, type } = action.payload;
 
             const cell: Cell = {
@@ -71,7 +71,7 @@ const cellSlice = createSlice({
     },
 });
 
-export const { updateCell, moveCell, deleteCell, insertCellBefore } = cellSlice.actions;
+export const { updateCell, moveCell, deleteCell, insertCellAfter } = cellSlice.actions;
 export default cellSlice.reducer;
 
 const randomId = () => {

@@ -1,4 +1,3 @@
-// import { useMemo } from 'react';
 import { useAppSelector } from '../hooks/UseTypedSelector';
 import AddCellBar from './AddCellBar';
 import CellListItem from './CellListItem';
@@ -6,6 +5,7 @@ import CellListItem from './CellListItem';
 const CellList: React.FC = () => {
   const stateCellOrder = useAppSelector((state) => state.cellReducer.order);
   const stateCellData = useAppSelector((state) => state.cellReducer.data);
+
 
   return (
     <>
