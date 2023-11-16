@@ -1,17 +1,25 @@
 import { useEffect, useState, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
+import { Cell } from '../state';
+import { useDispatchFn } from '../hooks/UseTypedDispatch';
 
-const TextEditor: React.FC = () => {
-  const medEditorRef = useRef<HTMLDivElement | null>(null);
-  const [text, setText] = useState('**Hello world!!!**');
+interface TextEditorProps {
+  cell: Cell;
+}
+
+const TextEditor: React.FC<TextEditorProps> = ({ cell }) => {
+  const { id, content } = cell;
+  const { updateCell } = useDispatchFn();
+
+  const mdEditorRef = useRef<HTMLDivElement | null>(null);
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     const listener = (event: MouseEvent) => {
       if (
-        medEditorRef.current &&
+        mdEditorRef.current &&
         event.target &&
-        medEditorRef.current.contains(event.target as Node)
+        mdEditorRef.current.contains(event.target as Node)
       ) {
         return;
       }
@@ -27,15 +35,18 @@ const TextEditor: React.FC = () => {
 
   if (editing) {
     return (
-      <div className="mt-2" ref={medEditorRef}>
-        <MDEditor value={text} onChange={(v) => setText(v || '')} />
+      <div ref={mdEditorRef}>
+        <MDEditor
+          value={content}
+          onChange={(value) => updateCell({ id: id, content: value || 'Click to edit' })}
+        />
       </div>
     );
   }
 
   return (
-    <div className="mt-2" onClick={() => setEditing(true)}>
-        <MDEditor.Markdown className="p-3 border-solid" source={text} />
+    <div onClick={() => setEditing(true)}>
+      <MDEditor.Markdown className="p-3 border-solid" source={content} />
     </div>
   );
 };

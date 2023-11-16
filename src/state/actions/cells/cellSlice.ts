@@ -17,8 +17,8 @@ const cellSlice = createSlice({
     reducers: {
 
         updateCell: (state, action: PayloadAction<UpdateCellPayload>) => {
-            console.log(action);
             const { id, content } = action.payload;
+            console.log(content)
             state.data[id].content = content;
 
             return state;
@@ -42,6 +42,7 @@ const cellSlice = createSlice({
             if (targetIdx > state.order.length - 1 || targetIdx < 0) {
                 return state;
             }
+
             state.order[cellIdx] = state.order[targetIdx];
             state.order[targetIdx] = id;
 

@@ -10,18 +10,19 @@
     @apply mb-2 text-3xl font-bold;
   }
   .btn {
-    @apply px-4 py-2 rounded transition duration-300;
+    @apply px-4 py-2 rounded transition duration-300 enabled:hover:text-white;
   }
   .btn-primary {
-    @apply bg-slate-500 enabled:hover:bg-slate-800;
+    @apply bg-orange-200 enabled:hover:bg-orange-500 ;
   }
   .btn-secondary {
-    @apply bg-orange-200 enabled:hover:bg-orange-500;
+    @apply bg-red-500 enabled:hover:bg-red-800;
   }
   .btn-tertiary {
     @apply bg-teal-400 enabled:hover:bg-teal-700;
   }
-  .wmde-markdown-color{
+
+  .wmde-markdown-color {
     @apply p-2 border-double border-white;
   }
   .w-md-editor .title {
@@ -29,5 +30,4 @@
     font-size: unset !important;
     font-weight: unset !important;
   }
-
 }

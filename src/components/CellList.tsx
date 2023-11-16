@@ -10,7 +10,12 @@ const CellList: React.FC = () => {
     <>
       {stateOrder.map((cellId) => {
         const cell = stateData[cellId];
-        return <CellListItem key={cell.id} cell={cell} />;
+
+        return (
+          <div className="mt-8 mb-8" key={cell.id}>
+            <CellListItem cell={cell} />
+          </div>
+        );
       })}
     </>
   );

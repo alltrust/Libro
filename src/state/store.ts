@@ -19,3 +19,12 @@ store.dispatch(insertCellBefore({
     id: null,
     type: "text"
 }))
+
+store.dispatch(insertCellBefore({
+    id: null,
+    type: "code"
+}))
+store.dispatch(insertCellBefore({
+    id: null,
+    type: "text"
+}))

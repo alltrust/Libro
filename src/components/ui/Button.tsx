@@ -4,6 +4,7 @@ interface ButtonProps {
   onClick: () => void;
   disabled?: boolean;
   isFormat?: boolean;
+  classname?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,8 +13,9 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled,
   isFormat,
+  classname,
 }) => {
-  const btnVariatnts = {
+  const btnVariants = {
     primary: 'btn-primary',
     secondary: 'btn-secondary',
     tertiary: 'btn-tertiary',
@@ -21,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`btn ${btnVariatnts[status]}${
+      className={`btn ${btnVariants[status]} ${classname || ''} ${
         disabled ? ' opacity-25 cursor-not-allowed' : ''
       } ${
         isFormat

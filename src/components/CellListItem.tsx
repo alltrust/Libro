@@ -1,4 +1,5 @@
 import { Cell } from '../state';
+import ActionBar from './ActionBar';
 import CodeCell from './CodeCell';
 import TextEditor from './TextEditor';
 
@@ -7,10 +8,11 @@ interface CellListItemProps {
 }
 
 const CellListItem: React.FC<CellListItemProps> = ({ cell }) => {
-  const { id, type, content } = cell;
   return (
-    //display either a text cell or code cell depending on type;
-    <div>{type === 'code' ? <CodeCell /> : <TextEditor />}</div>
+    <div>
+        <ActionBar cellId={cell.id}/>
+      {cell.type === 'code' ? <CodeCell cell={cell} /> : <TextEditor cell={cell} />}
+    </div>
   );
 };
 

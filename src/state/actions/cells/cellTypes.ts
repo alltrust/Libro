@@ -3,7 +3,7 @@ export type CellTypes = "code" | "text";
 export interface Cell {
     id: string;
     type: CellTypes;
-    content: string;
+    content: string | "CLick to edit";
 }
 
 export interface CellsState {
