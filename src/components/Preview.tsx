@@ -53,7 +53,7 @@ const Preview: React.FC<PreviewProps> = ({ code, bundlingStatus }) => {
         title="preview"
         sandbox="allow-scripts"
       />
-      {bundlingStatus && <div className=' absolute bg-white text-red-500 top-0 right-0 left-0 bottom-0 m-4'>{bundlingStatus}</div>}
+      {bundlingStatus && <div className='absolute bg-white text-red-500 top-0 right-0 left-0 bottom-0'>{bundlingStatus}</div>}
     </div>
   );
 };

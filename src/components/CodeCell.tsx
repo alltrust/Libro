@@ -12,7 +12,7 @@ interface CodeCellProps {
 
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useDispatchFn();
-  const codeBundle = useAppSelector((state) => state.bundlerReducer[cell.id]);
+  const bundle = useAppSelector((state) => state.bundlerReducer[cell.id]);
 
   useEffect(() => {
     const timer = setTimeout(async () => {
@@ -33,9 +33,15 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             onChange={(value) => updateCell({ id: cell.id, content: value })}
           />
         </Resizable>
-        {codeBundle && (
-          <Preview code={codeBundle.code} bundlingStatus={codeBundle.err} />
-        )}
+        <div className="bg-white h-full grow">
+          {!bundle || bundle.isLoading ? (
+            <div className="animate-fade-in flex relative h-full items-center justify-center w-full">
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-teal-500"></div>
+            </div>
+          ) : (
+            <Preview code={bundle.code} bundlingStatus={bundle.err} />
+          )}
+        </div>
       </div>
     </Resizable>
   );
