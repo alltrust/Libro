@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import cellReducer from './actions/cells/cellSlice';
-import bundlerReducer from './actions/bundler/BundlerSlice';
+import bundlerReducer from './actions/bundler/bundlerSlice';
 
 const store = configureStore({
     reducer: {

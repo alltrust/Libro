@@ -1,24 +1,31 @@
 import { useDispatch } from 'react-redux';
-import type { AppDispatch } from '../state';
+import { useMemo } from 'react';
+import type { AppDispatch, ICreatBundle } from '../state';
 import {
     updateCell,
     moveCell,
     insertCellAfter,
     deleteCell,
     DeleteCellPayload,
-    InsertCellBeforePayload,
+    InsertCellAfterPayload,
     MoveCellPayload,
-    UpdateCellPayload
+    UpdateCellPayload,
+    createBundle,
 } from '../state';
 
 const useAppDispatch: () => AppDispatch = useDispatch;
 
 export const useDispatchFn = () => {
     const dispatch = useAppDispatch();
-    return {
-        updateCell: (payload: UpdateCellPayload) => dispatch(updateCell(payload)),
-        moveCell: (payload: MoveCellPayload) => dispatch(moveCell(payload)),
-        insertCellBefore: (payload: InsertCellBeforePayload) => dispatch(insertCellAfter(payload)),
-        deleteCell: (payload: DeleteCellPayload) => dispatch(deleteCell(payload))
-    };
+    return useMemo(() => {
+
+        return {
+            updateCell: (payload: UpdateCellPayload) => dispatch(updateCell(payload)),
+            moveCell: (payload: MoveCellPayload) => dispatch(moveCell(payload)),
+            insertCellBefore: (payload: InsertCellAfterPayload) => dispatch(insertCellAfter(payload)),
+            deleteCell: (payload: DeleteCellPayload) => dispatch(deleteCell(payload)),
+            createBundle: (payload: ICreatBundle) => dispatch(createBundle(payload))
+        };
+    }, [dispatch]);
+
 };

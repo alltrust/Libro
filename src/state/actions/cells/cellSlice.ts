@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { Cell, CellsState } from "./cellTypes";
-import { DeleteCellPayload, InsertCellBeforePayload, MoveCellPayload, UpdateCellPayload } from "./cellActionsPayloads";
+import { DeleteCellPayload, InsertCellAfterPayload, MoveCellPayload, UpdateCellPayload } from "./cellActionsPayloads";
 
 
 const initialState: CellsState = {
@@ -18,7 +18,6 @@ const cellSlice = createSlice({
 
         updateCell: (state, action: PayloadAction<UpdateCellPayload>) => {
             const { id, content } = action.payload;
-            console.log(content)
             state.data[id].content = content;
 
             return state;
@@ -49,7 +48,7 @@ const cellSlice = createSlice({
             return state;
         },
 
-        insertCellAfter: (state, action: PayloadAction<InsertCellBeforePayload>) => {
+        insertCellAfter: (state, action: PayloadAction<InsertCellAfterPayload>) => {
             const { id, type } = action.payload;
 
             const cell: Cell = {
