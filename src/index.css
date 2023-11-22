@@ -34,4 +34,7 @@
     font-size: unset !important;
     font-weight: unset !important;
   }
+  .react-draggable-transparent-selection .cell-list{
+    @apply mb-100vh;
+  }
 }

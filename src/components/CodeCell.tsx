@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import CodeEditor from './CodeEditor';
 import Preview from '../components/Preview';
 import Resizable from './ui/Resizable';
-import { Cell, RootState } from '../state';
+import { Cell} from '../state';
 import { useDispatchFn } from '../hooks/UseTypedDispatch';
 import { useAppSelector } from '../hooks/UseTypedSelector';
-import { createSelector } from '@reduxjs/toolkit';
+import { useCumulativeCodeSelector } from '../hooks/UseCumulativeCodeSelector';
 
 interface CodeCellProps {
   cell: Cell;
@@ -15,38 +15,16 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useDispatchFn();
 
   const bundle = useAppSelector((state) => state.bundlerReducer[cell.id]);
-
-  const cellSelector = (state: RootState) => state.cellReducer;
-
-  const cumulativeCodeSelector = createSelector(
-    [cellSelector],
-    (cellReducer) => {
-      const { data, order } = cellReducer;
-      const orderedCells = order.map((id) => data[id]);
-      const cumulativeCode = [];
-      
-      for (const c of orderedCells) {
-        if (c.type === 'code') {
-          cumulativeCode.push(c.content);
-        }
-        if (c.id === cell.id) {
-          break;
-        }
-      }
-      return cumulativeCode;
-    },
-  );
-
-  const cumulativeCode = useAppSelector(cumulativeCodeSelector);
+  const cumulativeCode = useCumulativeCodeSelector(cell.id)
 
   useEffect(() => {
     if (!bundle) {
-      createBundle({ cellId: cell.id, input: cumulativeCode.join('\n') });
+      createBundle({ cellId: cell.id, input: cumulativeCode});
       return;
     }
 
     const timer = setTimeout(async () => {
-      createBundle({ cellId: cell.id, input: cumulativeCode.join('\n') });
+      createBundle({ cellId: cell.id, input: cumulativeCode });
     }, 1000);
 
     return () => {
@@ -54,7 +32,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     };
 
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cell.id, cumulativeCode.join('\n'), createBundle]);
+  }, [cell.id, cumulativeCode, createBundle]);
 
   return (
     <Resizable direction="vertical">
