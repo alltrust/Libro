@@ -19,6 +19,7 @@
     "@uiw/react-md-editor": "^3.25.6",
     "axios": "^1.6.1",
     "esbuild-wasm": "0.8.27",
+    "lerna": "^7.4.2",
     "localforage": "^1.10.0",
     "monaco-editor": "^0.44.0",
     "prettier": "^2.2.1",
